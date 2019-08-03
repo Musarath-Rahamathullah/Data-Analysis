@@ -1,0 +1,35 @@
+---
+title: "Income_Project"
+author: "Musarath"
+date: "8/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(ggplot2)
+```
+## Load dataset
+```{r}
+income = read.csv("E:/HBU/Assignment/Fifth Semester/RMAR_Grad695/income.csv")
+head(income)
+dim(income)
+str(income)
+
+# check for NAs
+sum(is.na(income))
+
+# remove the NAs by mean method
+for(i in 3:ncol(income)){
+  income[is.na(income[,i]), i] <- mean(income[,i], na.rm = TRUE)
+}
+
+# check for Na's
+sum(is.na(income))
+
+
+ggplot(income,aes(Industry,All_workers))+geom_bar(stat = 'identity',fill = "blue")
+
+```
+
+
